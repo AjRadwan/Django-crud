@@ -4,6 +4,6 @@ from core import views
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('addstudent', views.addstudent, name="addstudent")
-   
+    path('addstudent', views.addstudent, name="addstudent"),
+    path('<int:id>', views.delete, name="delete")
 ]

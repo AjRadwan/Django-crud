@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from core.models import Student
 from django.contrib import messages
 
@@ -12,7 +12,6 @@ def home(request):
        
     
 def addstudent(request):
-    
     if  request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -22,3 +21,9 @@ def addstudent(request):
         messages.success(request, "your From Has been submited")
     return render(request, 'addstudent.html')
 
+
+def delete(request, id):
+    student = Student.objects.get(id=id)  
+    student.delete()  
+    messages.warning(request, "Your list has been Deleted")
+    return redirect('home')

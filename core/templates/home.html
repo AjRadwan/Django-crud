@@ -24,8 +24,9 @@
               <td>{{ student.email}}</td>
               <td>{{student.address }}</td>
        <td> 
-         <button type="submit" class="btn btn-danger" href="{{ student.id}}">Delete</button>
-        <a href="{{ student.id}}"> <button type="submit" class="btn btn-primary">Edit</button> </a>
+        <a onclick="return confirm('Are you sure you want to delete this list!!')" href="{{student.id}}"><button type="submit" class="btn btn-danger" href="{{ student.id}}">Delete</button></a>
+
+        <a href="{{student.id}}"><button type="submit" class="btn btn-primary">Edit</button> </a>
       </td>
         
               
