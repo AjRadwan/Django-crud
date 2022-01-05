@@ -1,8 +1,9 @@
 from django.urls import path
-from core.views import Home, AddStudent
- 
+from core import views
+    
 
 urlpatterns = [
-    path("", Home.as_view(), name="home"),
-    path("addstudent/", AddStudent.as_view(), name="addstudent")
+    path('', views.home, name="home"),
+    path('addstudent', views.addstudent, name="addstudent"),
+    path('basic', views.basic, name="basic")
 ]
