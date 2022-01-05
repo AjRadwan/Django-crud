@@ -13,6 +13,7 @@
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">address</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -22,6 +23,12 @@
               <td> {{ student.name }} </td>
               <td>{{ student.email}}</td>
               <td>{{student.address }}</td>
+       <td> 
+         <button type="submit" class="btn btn-danger" href="{{ student.id}}">Delete</button>
+        <a href="{{ student.id}}"> <button type="submit" class="btn btn-primary">Edit</button> </a>
+      </td>
+        
+              
             </tr>
           </tbody>
           {% endfor %} 
