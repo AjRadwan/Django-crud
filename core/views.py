@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from core.models import Student
 from django.contrib import messages
-
- 
-
+from core.forms import StudentForm
 # Create your Viewss here.
 
 def home(request):
@@ -12,14 +10,26 @@ def home(request):
        
     
 def addstudent(request):
-    if  request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        address = request.POST.get('address')
-        addstu = Student(name=name, email=email, address=address)
-        addstu.save()
-        messages.success(request, "your From Has been submited")
-    return render(request, 'addstudent.html')
+    if request.method == 'POST':
+        fm = StudentForm(request.POST)
+        if fm.is_valid():
+           name = fm.cleaned_data['name']
+           email = fm.cleaned_data['email']
+           address = fm.cleaned_data['address']
+           student = Student(name=name, email=email, address=address)
+           student.save()
+           messages.success(request, "Your From has been submitted")
+           fm = StudentForm()
+    else:
+        fm = StudentForm()
+    return render(request, 'addstudent.html', {'form':fm})
+
+
+def edit(request, id):
+    student = Student.objects.get(id=id)  
+    return render(request, 'edit.html',{'students':student})
+    
+    
 
 
 def delete(request, id):
