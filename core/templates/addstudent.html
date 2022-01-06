@@ -8,6 +8,7 @@
       {% csrf_token %}
      {{ form.as_p }}
      <button type="submit" class="btn btn-primary">Submit</button>
+     <a href="{% url 'home' %}" class="btn btn-primary">GO Back</a>
   </form> 
 </div>
  

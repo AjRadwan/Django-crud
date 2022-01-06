@@ -26,8 +26,17 @@ def addstudent(request):
 
 
 def edit(request, id):
-    student = Student.objects.get(id=id)  
-    return render(request, 'edit.html',{'students':student})
+    if request.method == 'POST':
+        stuId = Student.objects.get(id=id)  
+        fm = StudentForm(request.POST, instance=stuId)
+        if fm.is_valid():
+            fm.save()
+            messages.success(request, "Your From has been Updated")
+            
+    else:
+        stuId = Student.objects.get(id=id)  
+        fm = StudentForm(instance=stuId)
+    return render(request, 'edit.html', {'form': fm})
     
     
 
