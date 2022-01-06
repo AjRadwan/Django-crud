@@ -8,7 +8,7 @@ def home(request):
     student = Student.objects.all()
     return render(request, 'home.html',{'students':student})
        
-    
+       
 def addstudent(request):
     if request.method == 'POST':
         fm = StudentForm(request.POST)
@@ -39,7 +39,6 @@ def edit(request, id):
     return render(request, 'edit.html', {'form': fm})
     
     
-
 
 def delete(request, id):
     student = Student.objects.get(id=id)  
